@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>abort</title>
+</head>
+<body>
+<button id="connect">connect</button>
+<button id="abort">abort</button>
+<script>
+  const connect = document.getElementById('connect')
+  const abort = document.getElementById('abort')
+
+  let xhr = null;
+
+  connect.onclick = ()=>{
+    xhr = new XMLHttpRequest()
+    xhr.open('GET', 'http://localhost:8000/delay')
+    xhr.send()
+  }
+
+  abort.onclick = ()=>{
+    xhr.abort()
+  }
+</script>
+</body>
+</html>
