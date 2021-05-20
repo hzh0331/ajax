@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>axios</title>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h2 class="page-header">axios</h2>
+  <button class="btn btn-primary">GET</button>
+  <button class="btn btn-danger">POST</button>
+  <button class="btn btn-info">generic</button>
+  <script>
+      axios.defaults.baseURL = 'http://localhost:8000'
+    $('button').eq(0).click(function (){
+
+        axios.get('/axios-server', {
+            params:{
+                a:100,
+                b:200
+            }, header:{
+                c:300,
+                d:400
+            },data:{
+                username:'aaa',
+                password:'aaa'
+            }
+        }).then(value => {
+            console.log(value)
+        })
+    })
+    $('button').eq(1).click(function (){
+        axios.post('/axios-server', {
+                username:'aaa',
+                password:'aaa'
+        },
+            {
+            params:{
+                a:100,
+                b:200
+            },
+            header:{
+                c:300,
+                d:400
+            }
+        }).then(value => {
+            console.log(value)
+        })
+    })
+    $('button').eq(2).click(function (){
+      $.ajax({
+        url:'http://localhost:8000/delay',
+        data:{a:100, b:200},
+        type:'GET',
+        timeout:2000,
+        error:function (error){
+          console.log("error:",error)
+        },
+        success:function (data){
+          console.log(data)
+        }
+      })
+    })
+  </script>
+</div>
+</body>
+</html>
