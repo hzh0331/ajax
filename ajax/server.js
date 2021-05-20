@@ -6,8 +6,9 @@ const app = express();
 //     response.setHeader('Access-Control-Allow-Origin', '*')
 //     response.send('Hello AJAX');
 // })
-app.post('/server', (request, response)=>{
+app.all('/server', (request, response)=>{
     response.setHeader('Access-Control-Allow-Origin', '*')
+    response.setHeader('Access-Control-Allow-Headers', '*')
     response.send('Hello AJAX');
 })
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>AJAX GET request</title>
+  <title>AJAX POST request</title>
   <style>
     #result{
       width: 200px;
@@ -20,6 +20,8 @@
   content.addEventListener('mouseover', function (){
     const xhr = new XMLHttpRequest()
     xhr.open('post','http://localhost:8000/server')
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.setRequestHeader('name', 'Zihao')
     xhr.send('a=100&b=200')
     xhr.onreadystatechange = function (){
       if (xhr.readyState === 4){
