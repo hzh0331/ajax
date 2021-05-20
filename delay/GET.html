@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delay</title>
+    <style>
+        #result{
+            width: 200px;
+            height: 100px;
+            border: solid 1px #90b;
+        }
+    </style>
+</head>
+<body>
+    <button>click to send request</button>
+    <div id="result">
+
+    </div>
+    <script>
+        const btn = document.getElementsByTagName('button')[0]
+        const content = document.getElementById('result')
+        btn.onclick = function (){
+            const xhr = new XMLHttpRequest()
+            xhr.timeout = 2000
+            xhr.ontimeout = ()=>{
+                alert('timeout')
+            }
+            xhr.onerror = ()=>{
+                alert('connection lost')
+            }
+            xhr.open('GET', 'http://localhost:8000/delay')
+            xhr.send()
+            xhr.onreadystatechange = function (){
+                if (xhr.readyState === 4){
+                    if (xhr.status >= 200 && xhr.status < 300){
+                        console.log(xhr.status)
+                        console.log(xhr.statusText)
+                        console.log(xhr.getAllResponseHeaders())
+                        console.log(xhr.response)
+                        content.innerHTML = xhr.response
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
