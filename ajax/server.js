@@ -2,7 +2,11 @@ const express = require('express');
 
 const app = express();
 
-app.get('/server', (request, response)=>{
+// app.get('/server', (request, response)=>{
+//     response.setHeader('Access-Control-Allow-Origin', '*')
+//     response.send('Hello AJAX');
+// })
+app.post('/server', (request, response)=>{
     response.setHeader('Access-Control-Allow-Origin', '*')
     response.send('Hello AJAX');
 })
