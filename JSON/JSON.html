@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JSON</title>
+  <style>
+    #result{
+      width: 200px;
+      height: 100px;
+      border: solid 1px #90b;
+    }
+  </style>
+</head>
+<body>
+<div id="result">
+
+</div>
+<script>
+  const content = document.getElementById('result')
+  window.onkeydown = function (){
+    const xhr = new XMLHttpRequest()
+    xhr.open('post','http://localhost:8000/server')
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+    xhr.setRequestHeader('name', 'Zihao')
+    xhr.responseType = 'json'
+    xhr.send('a=100&b=200')
+    xhr.onreadystatechange = function (){
+      if (xhr.readyState === 4){
+        if (xhr.status >= 200 && xhr.status < 300){
+          content.innerHTML = xhr.response.content
+        }
+      }
+    }
+  }
+</script>
+</body>
+</html>
